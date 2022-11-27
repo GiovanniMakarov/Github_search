@@ -1,0 +1,166 @@
+body  {
+    font-family: 'Poppins', sans-serif !important
+}
+
+.hidden {
+    display: none !important;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+.header {
+    padding: 30px 10px 0 10px;
+}
+
+.header__name {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 25px;
+}
+
+.input-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    position: relative;
+    max-width: 800px;
+}
+
+.header__input {
+    display: block;
+
+    width: 95%;
+    height: 30px;
+
+    font-size: 16px;
+
+    outline: none;
+    /* border: 1px solid black; */
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+
+
+}
+.header__input .active {
+    border-radius: 5px 5px 0 0;
+}
+
+.autocom-box {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+    width: 100%;
+    opacity: 1;
+    pointer-events: auto;
+
+    font-size: 16px;
+    
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    /* padding: 5px 20px; */
+    font-size: 18px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+}
+
+.autocom-box__item {
+    display: block;
+
+    list-style: none;
+    padding: 10px 20px;
+
+    cursor: pointer;
+    border-radius: 3px;
+  }
+
+.autocom-box li:hover {
+    background-color: rgba(203, 203, 203, 0.292);
+}
+
+.autocom-box__error {
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.repositories {
+    display: grid;
+    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, 330px);   
+}
+
+
+.rep {
+    width: 250px;
+    margin: 20px auto 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.1);
+}
+
+.rep__section {
+    display: flex;
+    flex-direction: column;
+}
+
+.rep__buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rep__field {
+    font-weight: 300;
+}
+
+.rep__link {
+    cursor: pointer;
+    display: inline;
+}
+
+.rep__github:hover {
+    scale: 1.05;
+}
+
+.rep__github:active {
+    scale: 1;
+}
+
+.rep__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 70%;
+    word-wrap: break-word;
+    gap: 5px;
+}
+
+.rep__button-delete {
+    width: 40px;
+    height: 40px;
+
+    background-repeat: no-repeat;
+    background-position: center;
+
+    background-image: url(./img/trash.svg);
+
+}
+
+.rep__button-delete:hover {
+    scale: 1.1;
+}
+.rep__button-delete:active {
+    scale: 1;
+}
