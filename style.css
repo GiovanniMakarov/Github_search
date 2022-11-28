@@ -154,7 +154,7 @@ body  {
     background-repeat: no-repeat;
     background-position: center;
 
-    background-image: url(./img/trash.svg);
+    background-image: url(./img/trash.svg) !important;
 
 }
 
