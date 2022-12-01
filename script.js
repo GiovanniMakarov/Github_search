@@ -1,33 +1,36 @@
 const input = document.querySelector('.header__input');
-const divNode = document.querySelector('.repositories');
-const suggBox = document.querySelector(".autocom-box");
-let suggList = [];
-let reps;
+const addedRepositories = document.querySelector('.repositories');
+const suggestionBox = document.querySelector(".autocom-box");
+let suggestionList = [];
+let data;
 
 onChange = debounce(onChange, 600);
 
 input.addEventListener('input', () => {
-    input.value == '' ? suggBox.classList.add('hidden') : suggBox.classList.remove('hidden');
+    input.value == '' ? suggestionBox.classList.add('hidden') : suggestionBox.classList.remove('hidden');
 });
 
 input.addEventListener('input', onChange);
-divNode.addEventListener('click', deleteRepository);
-suggBox.addEventListener('click', createRepCard);
+addedRepositories.addEventListener('click', deleteRepository);
+suggestionBox.addEventListener('click', createRepCard);
 
 async function onChange() {
     try {
-        reps = await getUsers(input.value);
-        if (reps) suggList = saveSugg(reps.items);
+        data = await getUsers(input.value);
+        if (data) {
+            suggestionList = saveSuggestion(data.items);
+        }
     
-        if (document.querySelector('.autocom-box__item')) suggBox.innerHTML = '';
+        if (document.querySelector('.autocom-box__item')) {
+            suggestionBox.textContent = '';
+        }
     
-        suggList.forEach((curr, index) => {
+        suggestionList.forEach((curr, index) => {
             showSuggestions(curr, index);
         })
     }
     catch (err) {
         renderError();
-        console.log('to samoe', err);
     }
 }
 
@@ -36,13 +39,14 @@ function renderError() {
         <span class="error-rext">Не найдено :(</span>
         <img src="./img/error.png" alt="error" class="error-image" width="80px" height="80px">
     </li>`;
-    suggBox.innerHTML = '';
-    suggBox.insertAdjacentHTML('afterbegin', code);
+    suggestionBox.textContent = '';
+    suggestionBox.insertAdjacentHTML('afterbegin', code);
 }
 
 
-function saveSugg(fullData) {
+function saveSuggestion(fullData) {
     let resArr = [];
+    // Использую императивный for чтобы записать только 5 объектов из ответа сервера
     for (i = 0; i < 5; i++) {
         resArr.push(fullData[i]);
     }
@@ -51,16 +55,18 @@ function saveSugg(fullData) {
 
 function createRepCard(event) {
     let id = event.target.id;
-    if (id) renderRepository(suggList[id]);
+    if (id) {
+        renderRepository(suggestionList[id]);
+    };
 
-    suggBox.innerHTML = '';
+    suggestionBox.textContent = '';
     input.value = '';
-    suggBox.classList.add('hidden');
+    suggestionBox.classList.add('hidden');
 }
 
 function showSuggestions(repository, id) {
     let code = `<li class="autocom-box__item" id="${id}">${repository.name}</li>`;
-    suggBox.insertAdjacentHTML('afterbegin', code);
+    suggestionBox.insertAdjacentHTML('afterbegin', code);
 }
 
 async function getUsers (request) {
@@ -101,7 +107,7 @@ function renderRepository (repository) {
                     </div>
                 </div>
     `;
-    divNode.insertAdjacentHTML('afterbegin', code);
+    addedRepositories.insertAdjacentHTML('afterbegin', code);
 }
 
 function deleteRepository (event) {
